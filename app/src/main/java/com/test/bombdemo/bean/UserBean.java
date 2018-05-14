@@ -16,9 +16,6 @@ import cn.bmob.v3.datatype.BmobFile;
  */
 public class UserBean extends BmobUser implements Serializable {
     
-//    String userName;
-//    String password;
-//    String mobilePhoneNumber;
     
     //这个BmobFile是特有的，我们可以用来上传我们的图片(头像资源)
     BmobFile icon;
@@ -31,35 +28,4 @@ public class UserBean extends BmobUser implements Serializable {
         this.icon = icon;
     }
 
-//    public String getUserName() {
-//        return userName;
-//    }
-//
-//    public void setUserName(String userName) {
-//        this.userName = userName;
-//    }
-//
-//    public String getPassword() {
-//        return password;
-//    }
-//
-//    public void setPassword(String password) {
-//        this.password = password;
-//    }
-//
-//    public String getPhone() {
-//        return mobilePhoneNumber;
-//    }
-//
-//    public void setPhone(String phone) {
-//        this.mobilePhoneNumber = phone;
-//    }
-//
-//    public String getEmail() {
-//        return email;
-//    }
-//
-//    public void setEmail(String email) {
-//        this.email = email;
-//    }
 }

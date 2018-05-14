@@ -3,4 +3,13 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="load_more_color">#34E2CC</color>
+    <color name="text_color_chengse">#FF8472</color>
+    <color name="text_color_2">#ff666666</color>
+    <color name="black">#000000</color>
+    <color name="bg_color">#f1f1f1</color>
+    <color name="green_btn_color_disable">#7f45c01a</color>
+    <color name="green_btn_color_pressed">#ff298409</color>
+    <color name="green_btn_color_normal">#ff45c01a</color>
 </resources>
