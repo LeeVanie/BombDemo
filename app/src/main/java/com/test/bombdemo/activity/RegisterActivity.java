@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.bombdemo.R;
+import com.test.bombdemo.base.BaseActivity;
 import com.test.bombdemo.bean.UserBean;
 import com.test.bombdemo.utils.CommonUtils;
 import com.test.bombdemo.utils.ToastUtils;
@@ -46,7 +47,7 @@ import cn.smssdk.utils.SMSLog;
  * @最后修改者:
  * @最后修改内容:
  */
-public class RegisterActivity extends Activity implements View.OnClickListener {
+public class RegisterActivity extends BaseActivity implements View.OnClickListener {
     
     public static final String TAG = "RegisterActivity";
     
@@ -60,14 +61,25 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
     private boolean flag=true;
     
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_register);
-        
-        bindView();
+    protected void initEventAndData() {
 
+        // 不开启手势
+        disablePatternLock(true);
+        
         eventHandler = new SMSEvenHanlder();
         SMSSDK.registerEventHandler(eventHandler);
+    }
+
+    @Override
+    protected void initInjecter() {
+
+        bindView();
+
+    }
+
+    @Override
+    protected int getresLayoutID() {
+        return R.layout.activity_register;
     }
 
     private void bindView() {
@@ -99,8 +111,8 @@ public class RegisterActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.btn_reSend:
                 if (CommonUtils.checkPhoneNum(this, phone.getText().toString().trim())){
-//                    timer = new MyCountTimer(60000, 1000);
-//                    timer.start();
+                    timer = new MyCountTimer(60000, 1000);
+                    timer.start();
                     SMSSDK.getVerificationCode("86", phone.getText().toString().trim());
                     yzm.requestFocus();
                 }

@@ -1,19 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.test.bombdemo.MainActivity">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
+    <FrameLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/rgTabBar"/>
 
-</android.support.constraint.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_above="@+id/rgTabBar"
+        android:background="#E0E0E0"/>
+
+    <RadioGroup
+        android:id="@+id/rgTabBar"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="@color/white"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/home"
+            style="@style/TabButton"
+            android:drawableTop="@drawable/ic_tab_home_selector"
+            android:text="@string/home_tab"/>
+
+        <RadioButton
+            android:id="@+id/category"
+            style="@style/TabButton"
+            android:drawableTop="@drawable/ic_tab_msg_selector"
+            android:text="@string/advisory_tab"/>
+
+        <RadioButton
+            android:id="@+id/group"
+            style="@style/TabButton"
+            android:drawableTop="@drawable/ic_tab_advice_selector"
+            android:text="@string/lord_tab"/>
+
+        <RadioButton
+            android:id="@+id/person"
+            style="@style/TabButton"
+            android:drawableTop="@drawable/ic_tab_dynamic_selector"
+            android:text="@string/thoughts_tab"/>
+    </RadioGroup>
+    
+
+</RelativeLayout>

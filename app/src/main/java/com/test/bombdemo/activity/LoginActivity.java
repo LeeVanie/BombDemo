@@ -8,9 +8,11 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.test.bombdemo.R;
+import com.test.bombdemo.base.BaseActivity;
 import com.test.bombdemo.bean.UserBean;
 
 import cn.bmob.v3.BmobUser;
@@ -26,23 +28,22 @@ import rx.Subscriber;
  * @最后修改者:
  * @最后修改内容:
  */
-public class LoginActivity extends Activity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private EditText user, psd;
     private Button login, register;
     private ImageView qqLogin, wxLogin, sinaLogin;
+    private TextView forgetpsd;
     
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
-    
-        
-        bindview();
+    protected void initEventAndData() {
+        // 启动页不开启手势
+        disablePatternLock(true);
         
     }
 
-    private void bindview() {
+    @Override
+    protected void initInjecter() {
         user = (EditText) findViewById(R.id.loginname);
         psd = (EditText) findViewById(R.id.password);
         login = (Button) findViewById(R.id.login);
@@ -50,12 +51,19 @@ public class LoginActivity extends Activity implements View.OnClickListener {
         qqLogin = (ImageView) findViewById(R.id.qq_login);
         wxLogin = (ImageView) findViewById(R.id.wx_login);
         sinaLogin = (ImageView) findViewById(R.id.sina_login);
+        forgetpsd = (TextView) findViewById(R.id.forgetpsd);
 
         login.setOnClickListener(this);
         register.setOnClickListener(this);
         qqLogin.setOnClickListener(this);
         wxLogin.setOnClickListener(this);
         sinaLogin.setOnClickListener(this);
+        forgetpsd.setOnClickListener(this);
+    }
+
+    @Override
+    protected int getresLayoutID() {
+        return R.layout.activity_login;
     }
 
     public boolean isEmpty(){
@@ -82,6 +90,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 break;
             case R.id.sina_login:
                 break;
+            case R.id.forgetpsd:
+                startActivity(new Intent(this, ForgetActivity.class));
+                break;
         }
     }
     
@@ -104,7 +115,9 @@ public class LoginActivity extends Activity implements View.OnClickListener {
                 @Override
                 public void onNext(BmobUser bmobUser) {
                     UserBean user =  BmobUser.getCurrentUser(UserBean.class);
-                    Toast.makeText(LoginActivity.this, "Login Success!!!", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
         }

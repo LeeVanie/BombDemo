@@ -12,4 +12,5 @@
     <color name="green_btn_color_disable">#7f45c01a</color>
     <color name="green_btn_color_pressed">#ff298409</color>
     <color name="green_btn_color_normal">#ff45c01a</color>
+    <color name="text_color_lightblack">#959595</color>
 </resources>

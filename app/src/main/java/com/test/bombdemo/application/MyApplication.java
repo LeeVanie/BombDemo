@@ -1,9 +1,16 @@
 package com.test.bombdemo.application;
 
+import android.app.Activity;
 import android.app.Application;
+import android.os.Environment;
 
 import com.mob.MobSDK;
+import com.test.bombdemo.Common.Setting;
 import com.test.bombdemo.utils.ManifestUtil;
+
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobSMS;
@@ -26,7 +33,7 @@ public class MyApplication extends Application {
         super.onCreate();
         
         myApplication = this;
-        
+        activityList = new ArrayList<>();
         initBomb();
         MobSDK.init(this);
 
@@ -50,6 +57,47 @@ public class MyApplication extends Application {
         //Bmob.initialize(config);
     
     }
+    public static File getFileLocation() {
+        return myApplication.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
+    }
+
+    /** ----------------------- 一些公共的变量 ------------------------- */
+    private long lockTime = 0; // 保存的是最近一次调用onPause()的系统时间
+    private Setting settings;  // 手势设置
+
+    /** ----------------------- 一些set/get方法 ------------------------- */
+    public long getLockTime() {
+        return lockTime;
+    }
+
+    public void setLockTime(long lockTime) {
+        this.lockTime = lockTime;
+    }
+
+    public Setting getSettings() {
+        return settings;
+    }
+
+    public void setSettings(Setting settings) {
+        this.settings = settings;
+    }
 
 
+    private List<Activity> activityList;
+
+    public void addActivity(Activity activity) {
+        activityList.add(activity);
+    }
+
+    public void finishActivity() {
+
+        if (activityList.size() == 0) {
+            activityList.clear();
+        }
+
+        for (Activity activity : activityList) {
+            activity.finish();
+        }
+
+    }
 }
